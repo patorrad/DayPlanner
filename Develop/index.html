@@ -45,21 +45,18 @@
 
         hours.forEach(element => {
 
-          var timeSlotRows = $("<div>");
-          timeSlotRows.addClass("row");
+          var timeSlotRows = $("<div>").addClass("row");
           timeSlotRows.attr("id", element);
           timeSlotRows.attr("style", "height: 60px; margin: 0 auto")
           $(".container").append(timeSlotRows);
 
-          var timeSlotTime = $("<div>");
-          timeSlotTime.addClass("col-md-1 hour");
+          var timeSlotTime = $("<div>").addClass("col-md-1 hour hour");
           var ampm = element <= 12? "AM" : "PM";
           var pmHr = element <= 12? element : element - 12;
           timeSlotTime.text(`${pmHr}${ampm}`);
           $("#" + element).append(timeSlotTime);
 
-          var timeSlotText = $("<form>");
-          timeSlotText.addClass("col-md-9");
+          var timeSlotText = $("<form>").addClass("col-md-9 time-block");
           timeSlotText.attr("id", element + "form");
           $("#" + element).append(timeSlotText);
 
@@ -69,20 +66,17 @@
           timeSlotInput.attr("style", "width:100%; height:100%; border: none");
           $("#" + element + "form").append(timeSlotInput);
 
-          var timeBtnDiv = $("<div>");
-          timeBtnDiv.addClass("col-md-2");
+          var timeBtnDiv = $("<div>").addClass("col-md-2 saveBtn");
           timeBtnDiv.attr("id", element + "button");
           $("#" + element).append(timeBtnDiv);
 
-          var timeSlotBtn = $("<button>");
-          timeSlotBtn.addClass("saveBtn");
+          var timeSlotBtn = $("<button>").addClass("saveBtn");
           timeSlotBtn.text("Save");
           timeSlotBtn.attr("style", "width: 100%; height:100%")
           $("#" + element + "button").append(timeSlotBtn);
         });
 
         let btnArray = $('button');
-        // console.log(btnArray);
         btnArray.each(btn => {
           let id;
           $(btnArray[btn]).on('click', function(event) {
@@ -91,21 +85,23 @@
             }
             
             switch (id) {
-              case ("9AMbutton"):  saveTask("9AMinput");  break;
-              case ("10AMbutton"): saveTask("10AMinput"); break;
-              case ("11AMbutton"): saveTask("11AMinput"); break;
-              case ("12AMbutton"): saveTask("12AMinput"); break;
-              case ("1PMbutton"):  saveTask("1PMinput");  break;
-              case ("2PMbutton"):  saveTask("2PMinput");  break;
-              case ("3PMbutton"):  saveTask("3PMinput");  break;
-              case ("4PMbutton"):  saveTask("4PMinput");  break;
-              case ("5PMbutton"):  saveTask("5PMinput");  break;
+              case ("9button"):  saveTask("9input");  break;
+              case ("10button"): saveTask("10input"); break;
+              case ("11button"): saveTask("11input"); break;
+              case ("12button"): saveTask("12input"); break;
+              case ("13button"): saveTask("13input");  break;
+              case ("14button"): saveTask("14input");  break;
+              case ("15button"): saveTask("15input");  break;
+              case ("16button"): saveTask("16input");  break;
+              case ("17button"): saveTask("17input");  break;
              
             }
           });
         });
         function saveTask(slotName) {
           var task = $("#" + slotName).val();
+          console.log(slotName);
+          
           if (task === "") {
               return;
           }
